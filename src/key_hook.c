@@ -28,9 +28,11 @@ int		key_hook(int keycode, t_env *e)
 	else if (keycode == UP || keycode == DOWN || keycode == LEFT
 			|| keycode == RIGHT)
 		move_key(keycode, e);
-	else if (keycode == PLUS || keycode == MOINS)
+	else if (keycode == PLUS || keycode == MOINS || keycode == 13 || keycode == 0)
 		key_zoom(keycode, e);
-	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 86)
+	else if (keycode == 83 || keycode == 84 || keycode == 85 
+			|| keycode == 86 || keycode == 18 || keycode == 19 || keycode == 20
+			|| keycode == 21)
 		choose_fractol(keycode, e);
 	else if (keycode == 32 || keycode == 37)
 		lock_hook(keycode, e);
@@ -50,9 +52,9 @@ void	lock_hook(int keycode, t_env *e)
 
 void	key_zoom(int keycode, t_env *e)
 {
-	if (keycode == PLUS)
+	if (keycode == PLUS || keycode == 13)
 		e->zoom *= 1.1;
-	if (keycode == MOINS)
+	if (keycode == MOINS || keycode == 0)
 		e->zoom /= 1.1;
 }
 
@@ -71,12 +73,12 @@ void	move_key(int keycode, t_env *e)
 void	choose_fractol(int keycode, t_env *e)
 {
 	init_image(e);
-	if (keycode == 83)
+	if (keycode == 83 || keycode == 19)
 		e->what_fract = 'm';
-	if (keycode == 84)
+	if (keycode == 84 || keycode == 18)
 		e->what_fract = 'j';
-	if (keycode == 86)
+	if (keycode == 86 || keycode == 20)
 		e->what_fract = 'b';
-	if (keycode == 85)
+	if (keycode == 85 || keycode == 21)
 		e->what_fract = 'c';
 }
